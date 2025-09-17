@@ -21,8 +21,12 @@
 .logo {
 }
 
-.search {
+.search,
+.search-result {
   width: 361px;
+}
+
+.search {
   height: var(--search-height);
   padding-left: 16px;
   background-color: rgba(22, 24, 35, 0.06);
@@ -59,6 +63,13 @@
   }
 }
 
+.search-title{
+  padding: 5px 12px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #666;
+}
+
 .clear,
 .loading {
   position: absolute;
@@ -81,7 +92,7 @@
     background-color: rgba(22, 24, 35, 0.03);
   }
 
-  :active{
+  :active {
     color: rgba(22, 24, 35, 0.8);
   }
 }
