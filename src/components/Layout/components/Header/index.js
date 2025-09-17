@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
 
+import Button from "../../../Button";
 import styles from "./Header.module.scss";
 import images from "../../../../assets/images";
 import { Wrapper as PopoverWrapper } from "../../../popover";
@@ -58,7 +59,10 @@ function Header() {
             </button>
           </div>
         </Tippy>
-        <div className={cx("action")}></div>
+        <div className={cx("action")}>
+          <Button text>Upload</Button>
+          <Button outline rounded>Log in</Button>
+        </div>
       </div>
     </header>
   );
