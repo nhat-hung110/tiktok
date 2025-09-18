@@ -14,6 +14,8 @@
     width: 100%;
     border-radius: 0;
     padding: 11px 16px;
+    line-height: 1.8rem;
+    color: var(--text-color);
   }
 
   button {
@@ -24,5 +26,27 @@
 .menu-item {
   &:hover {
     background-color: #f3f2f2;
+    cursor: pointer;
   }
+}
+
+// Header
+.header {
+  position: relative;
+  height: 50px;
+  margin-top: -8px;
+}
+
+.back-btn {
+  width: 50px;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+} 
+
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
