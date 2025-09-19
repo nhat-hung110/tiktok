@@ -22,13 +22,18 @@
     font-weight: 500;
   }
 }
-
+// Menu item
 .menu-item {
   &:hover {
     background-color: #f3f2f2;
     cursor: pointer;
   }
+
+  &.separate{
+    border-top: 2px solid #dcdcdc;
+  }
 }
+
 
 // Header
 .header {
