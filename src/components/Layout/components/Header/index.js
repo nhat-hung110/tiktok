@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleQuestion,
   faCircleXmark,
-  faCloudArrowUp,
   faCoins,
   faEarthAsia,
   faEllipsisVertical,
@@ -12,8 +11,6 @@ import {
   faKeyboard,
   faMagnifyingGlass,
   faMessage,
-  faSign,
-  faSignIn,
   faSignOut,
   faSpinner,
   faUser,
@@ -28,6 +25,8 @@ import images from "../../../../assets/images";
 import { Wrapper as PopoverWrapper } from "../../../popover";
 import AccountItem from "../../../AccountItem";
 import Menu from "../../../popover/Menu";
+import { MessageIcon, UploadIcon } from "../../../icons";
+import Image from "../../../Image";
 
 const cx = classNames.bind(styles);
 
@@ -80,24 +79,24 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: "View profile",
-      to: '/@user'
+      to: "/@user",
     },
     {
       icon: <FontAwesomeIcon icon={faCoins} />,
       title: "Get coins",
-      to: '/coin'
+      to: "/coin",
     },
     {
       icon: <FontAwesomeIcon icon={faGear} />,
       title: "Settings",
-      to: '/setting'
+      to: "/setting",
     },
     ...MENU_ITEMS,
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
       title: "Log out",
-      to: '/logout',
-      separate: true
+      to: "/logout",
+      separate: true,
     },
   ];
 
@@ -138,14 +137,17 @@ function Header() {
         <div className={cx("action")}>
           {currentUser ? (
             <>
-              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+              <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                  <UploadIcon className={cx("action-icon")} />
                 </button>
               </Tippy>
-              <button className={cx("action-btn")}>
-                <FontAwesomeIcon icon={faMessage} />
-              </button>
+              <Tippy delay={[0, 100]} content="Message" placement="bottom">
+                <button className={cx("action-btn")}>
+                  <MessageIcon className={cx("action-icon")} />
+                  <span className={cx("badge")}>12</span>
+                </button>
+              </Tippy>
             </>
           ) : (
             <>
@@ -155,9 +157,10 @@ function Header() {
           )}
           <Menu onChange={handleMenuChange} items={userMenu}>
             {currentUser ? (
-              <img
+              <Image
                 className={cx("user-avatar")}
-                src="https://cdn-media.sforum.vn/storage/app/media/ctv_seo3/meme-meo-cuoi-5.jpg"
+                src=""
+                fallback="https://www.slotcharter.net/wp-content/uploads/2020/02/no-avatar.png"
                 alt="Nguyen Van A"
               />
             ) : (

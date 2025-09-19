@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const cx = classNames.bind(styles);
 
-const defaultFn = () => {}
+const defaultFn = () => {};
 
 function Menu({ children, items = [], onChange = defaultFn }) {
   const [history, setHistory] = useState([{ data: items }]);
@@ -38,7 +38,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
     <Tippy
       interactive
       offset={[12, 10]}
-      delay={[0, 800]}
+      delay={[0, 500]}
       placement="bottom-end"
       render={(attrs) => (
         <div className={cx("menu-list")} tabIndex="-1" {...attrs}>
@@ -55,9 +55,9 @@ function Menu({ children, items = [], onChange = defaultFn }) {
           </PopoverWrapper>
         </div>
       )}
-      onHide={() => setHistory(prev => prev.slice(0, 1))}
+      onHide={() => setHistory((prev) => prev.slice(0, 1))}
     >
-      {children} 
+      {children}
     </Tippy>
   );
 }
