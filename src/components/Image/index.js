@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { forwardRef } from "react";
 import images from "../../assets/images";
 
 const Image = forwardRef(
