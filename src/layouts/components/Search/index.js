@@ -8,10 +8,11 @@ import {
 import HeadlessTippy from "@tippyjs/react/headless";
 import classNames from "classnames/bind";
 
-import { Wrapper as PopoverWrapper } from "../../../popover";
-import AccountItem from "../../../AccountItem";
+import * as searchServices from "../../../services/searchService";
+import { Wrapper as PopoverWrapper } from "../../../components/popover";
+import AccountItem from "../../../components/AccountItem";
 import styles from "./Search.module.scss";
-import useDebounce from "../../../../hooks/useDebounce";
+import useDebounce from "../../../hooks/useDebounce";
 
 const cx = classNames.bind(styles);
 
@@ -27,21 +28,15 @@ function Search() {
 
   useEffect(() => {
     if (debounce.trim()) {
-      setLoading(true);
+      const fetchApi = async () => {
+        setLoading(true);
+        const result = await searchServices.search(debounce);
+        setSearchResult(result);
 
-      fetch(
-        `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-          debounce
-        )}&type=less`
-      )
-        .then((res) => res.json())
-        .then((res) => {
-          setSearchResult(res.data);
-          setLoading(false);
-        })
-        .catch(() => {
-          setLoading(false);
-        });
+        setLoading(false);
+      };
+
+      fetchApi();
     } else {
       setSearchResult([]);
     }
@@ -55,6 +50,13 @@ function Search() {
 
   const handleHideResult = () => {
     setShowResult(false);
+  };
+
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    if (!searchValue.startsWith(" ") || searchValue.trim()) {
+      setSearchValue(searchValue);
+    }
   };
 
   return (
@@ -80,7 +82,7 @@ function Search() {
             value={searchValue}
             placeholder="Search account and video"
             spellCheck="false"
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={(e) => handleChange(e)}
             onFocus={() => setShowResult(true)}
           />
           {searchValue.trim() && !loading && (
@@ -92,7 +94,10 @@ function Search() {
             <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
           )}
 
-          <button className={cx("search-btn")}>
+          <button
+            className={cx("search-btn")}
+            onMouseDown={(e) => e.preventDefault()}
+          >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>

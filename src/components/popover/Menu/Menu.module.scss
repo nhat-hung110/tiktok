@@ -1,6 +1,7 @@
 // Menu wrapper
 .menu-popover {
   padding-bottom: 8px;
+  
 }
 
 .menu-list {
@@ -22,6 +23,11 @@
     font-weight: 500;
   }
 }
+
+.menu-body{
+  overflow-y: auto;
+  
+}
 // Menu item
 .menu-item {
   &:hover {
@@ -40,6 +46,7 @@
   position: relative;
   height: 50px;
   margin-top: -8px;
+  flex-shrink: 0;
 }
 
 .back-btn {

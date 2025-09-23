@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./Button.module.scss";
 
 const cx = classNames.bind(styles);
-console.log(styles);
 
 function Button({
   to,

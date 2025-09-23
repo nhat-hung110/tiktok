@@ -6,6 +6,8 @@
   --white: white;
   --text-color: #333;
 
+  --font-family: "ProximaNova", sans-serif;
+
   //Default layout
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
@@ -22,12 +24,13 @@ html {
 }
 
 body {
-  font-family: "ProximaNova", sans-serif;
+  font-family: var(--font-family);
   font-optical-sizing: auto;
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   color: var(--text-color);
+  overflow-y: overlay;
 }
 
 button,
@@ -42,6 +45,7 @@ a[href] {
   text-decoration: none;
   font-weight: inherit;
 }
+
 
 // Fonts embedded
 
